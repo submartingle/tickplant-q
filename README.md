@@ -18,7 +18,20 @@ This project simulates a simplified market data tick platform built in **KDB+/Q*
 ---
 
 ## 📊 Performance Analysis
+### Test Environment
 
+**Software:**
+- KDB+ v4.1
+- KDB-X (community version)
+
+**Operating System:**
+- Linux
+- Windows
+
+**Hardware:**
+- Intel© Core™ i5-8250U CPU @ 1.60GHz × 4, 8G memory
+- Development machine, localhost IPC
+  
 ### Latency Measurement
 
 The system includes instrumentation to measure end-to-end latency across each hop in the data pipeline. Timestamps are captured at the Feed Handler (FH), Tickerplant (TP), and subscriber endpoints (RDB/RTE).
@@ -186,6 +199,7 @@ q).latency.report[]
 - Localhost IPC achieves sub-millisecond p50 latencies
 
 **Production Considerations:**
+- Performance benchmarks conducted on both KDB+ v4.1 and KDB-X on Linux/Windows
 - For sustained 24/7 operation, implement periodic HDB writes (every 30-60 minutes) at RDB/RTE
 - Disable throughput monitoring (`.stats.throughput:0b`) in production if metrics collection not required
 - Typical production systems on optimized Linux achieve 200-600μs latencies
