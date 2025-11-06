@@ -1,10 +1,6 @@
-/q tick.q SRC [DST] [-p 5010] [-o h]
-system"l tick/",(src:first .z.x,enlist"sym"),".q"  / load table schema
+system"l tick/",(src:first .z.x,enlist"sym"),".q"  
 
 if[not system"p";system "p 5010"]
-
-//maintain table for connections
-//cons:([handle:`long$()] user:`$(); connTime:`timestamp$()) 
 
 \l tick/u.q
 
@@ -20,7 +16,6 @@ tick:{[sch;logf]
 	  /check all tables have the first three fields as id,time,sym
 	  if[not min(`id`time`sym ~3#key flip value @)each lst:((tables `.) except `cons`latency);
 	     '"first three columns are not `id`time`sym"];
-	  /apply g to all syms
 	  @[;`sym;`g#] each lst;
 	  d::.z.D;
 	 /create log file path
@@ -47,17 +42,14 @@ upd:{[t;x]
 
 	  
 ts:{if[x>d;if[d<x-1;system"t 0";'"more than one day?"];eod[]]} 
-if[not system"t";system "t 2000"]  / FH call upd on TP which immediately publish data downstream no wait, to use batch mode use .z.ts (trigered when count >n or t= x)
-
+if[not system"t";system "t 2000"]  
 .z.ts:{ts .z.D;
     if[l & h:count .u.logBuffer;
-	  l enlist (`upd;`trades;.u.logBuffer);  / here table name is hard coded?
-	  .u.i:.u.i+h;  /here i total number of rows not messages in the normal case  
+	  l enlist (`upd;`trades;.u.logBuffer);  / table name is hard coded
+	  .u.i:.u.i+h;  / i total number of rows not messages in the normal case  
 	 delete from `.u.logBuffer;]
 	}	  
 	
-/.z.po:{[h] `cons upsert (h;.z.u;.z.P)}
-/.z.pc:{[h] delete from `cons where handle=h}
 
 \d .
 .u.tick[src;.z.x 1];
