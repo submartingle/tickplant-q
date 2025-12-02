@@ -12,6 +12,7 @@ logBuffer:0#value `..trades;
 
 
 tick:{[sch;logf]
+       init[];
 	  /check all tables have the first three fields as id,time,sym
 	  if[not min(`id`time`sym ~3#key flip value @)each lst:((tables `.) except `cons`latency);
 	     '"first three columns are not `id`time`sym"];
