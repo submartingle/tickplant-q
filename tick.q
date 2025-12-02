@@ -12,7 +12,6 @@ logBuffer:0#value `..trades;
 
 
 tick:{[sch;logf]
-      init[];
 	  /check all tables have the first three fields as id,time,sym
 	  if[not min(`id`time`sym ~3#key flip value @)each lst:((tables `.) except `cons`latency);
 	     '"first three columns are not `id`time`sym"];
@@ -46,7 +45,7 @@ if[not system"t";system "t 2000"]
 .z.ts:{ts .z.D;
     if[l & h:count .u.logBuffer;
 	  l enlist (`upd;`trades;.u.logBuffer);  / table name is hard coded
-	  .u.i:.u.i+h;  / i total number of rows not messages in the normal case  
+	  .u.i:.u.i+1;  / i total number of valid chunks   
 	 delete from `.u.logBuffer;]
 	}	  
 	
