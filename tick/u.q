@@ -8,7 +8,7 @@ add:{[tab;s]
     if[`~tab;:"emptytablename"];
      $[not .z.w in raze w[tab;;0];
 	    w[tab],:enlist (.z.w;s);
-		[i:w[tab;;0]?.z.w; $[`~s; [w[tab]_:i;add[tab;s]];if[not `~w[tab;i;1];.[`.u.w;(tab;i;1);union;s]]]]]; /need to apply to w symbol to persist the change
+		[i:w[tab;;0]?.z.w; $[`~s; [w[tab] _: i;add[tab;s]];if[not `~w[tab;i;1];.[`.u.w;(tab;i;1);union;s]]]]]; /need to apply to w symbol to persist the change
         /no need to check if any s in the table as tables are dynamically updated and can contain new symbols and client can add subscription before new symbol arrives
 	   (tab;$[99=type v:value tab;select from tab where sym in s;@[0#v;`sym;`g#]])
 	   }
