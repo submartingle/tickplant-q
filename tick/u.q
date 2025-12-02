@@ -15,7 +15,7 @@ add:{[tab;s]
      
 
 del:{[tab;h]
-      w[tab]_:w[tab;;0]?h}
+      w[tab] _: w[tab;;0]?h}
 	  
 .z.pc:{[h]  del[;h]each key w}
 
