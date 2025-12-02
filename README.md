@@ -1,6 +1,6 @@
 # Mini Tick Data System – KDB+/Q Simulation Framework
 
-This project simulates a simplified market data tick platform built in **KDB+/Q**. It includes components for generating tick-level price data, broadcasting via a tick plant, subscribing clients, and computing basic real-time analytics with comprehensive performance instrumentation.
+This project simulates a simplified market data tick platform built in **KDB+/Q**. It is based on KDB+ tick architecture by KX Systems with modified features, including components for generating tick-level price data, broadcasting via a tick plant, subscribing clients, and computing basic real-time analytics with comprehensive performance instrumentation.
 
 ---
 
