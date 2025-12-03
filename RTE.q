@@ -26,8 +26,8 @@ rep:{ (.[;();:;].) x;
 	 -11!y; 
 	 upd:ori_upd;
 	 / or just change directory to .
-	`tickh  upsert select time:max time, high:max price, low: min price, open:first price, close:last price by sym from `trades; 
-    `RV upsert  select time:min time, price:last price, tv:sum (xexp[;2] 1_deltas log@) price by sym from `trades;
+	`tickh  upsert select time:max time, high:max price, low: min price, open:first price, close:last price by sym from `..trades; 
+    `RV upsert  select time:min time, price:last price, tv:sum (xexp[;2] 1_deltas log@) price by sym from `..trades;
     `trades set 0#`trades;
     }
 
