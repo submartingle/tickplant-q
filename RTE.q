@@ -54,7 +54,7 @@ upd:{[tab;newtrades]
          `tickh upsert ntab; 
 
         /note RV`time only updated for the first time a ticker is inserted, the initial timestamp is needed for intraday vol calc
-        updRV:`time xasc (0!(select from RV where sym in newtrades`sym)) uj newtrades; 
+        updRV:`time xasc (select from 0!RV where sym in newtrades`sym) uj newtrades; 
 		updRV[`tv]:0^updRV[`tv];
         ntabRV: select time:min time, price:last price, tv:(first tv)+sum (xexp[;2] 1_deltas log@) price by sym from updRV; 
         `RV upsert ntabRV;
