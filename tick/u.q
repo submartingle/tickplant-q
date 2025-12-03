@@ -40,7 +40,6 @@ pub:{[tab;x]
 
 
 sub:{[tab;s] 
-     h:.z.w;
     if[tab~`;:sub[;s] each t];
     if[not tab in t;'tab];
 	add[tab;s]}  //to add: provide users with two options: 1. overwrite the ticker  2. append the ticker
